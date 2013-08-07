@@ -5,7 +5,7 @@
      Comments: "Goal 1: Review of WPF"
  */
 
- alert('Hello World!');
+ //alert('Hello World!');
 
 // self-executing function
 
@@ -54,32 +54,41 @@
 console.log('------ variables ----------');
 
     //example 1: variables defined properly
-
+    var name = "james", course = "PAW1", month = 3;
+    console.log("name:", name + " course:", course + " month:", month);
 
     //example 2: variables not defined will = "undefined"
-
+    var name, course, month; // incorrect way to write variables, this doesn't mean anything
+    console.log("name:", name + " course:", course + " month:", month);
 
     //example 3: a mix of variables defined and not defined
-
+    var name, course = "PWA1", month;
+    console.log("name:", name + " course:", course + " month:", month);
 
     //example 4: declaring multiple variables at once w/ same value
-
+    var a = b = c = d = 10;
+    console.log("a:", a + " b:", b + " c:", c + " d:", d);
 
 
 // string (definition, concatenation, escape character)
 console.log('------ strings ----------');
 
     //basic string
-
+    var phrase = "James Bond";
+    console.log("phrase 1:", phrase);
 
     //string w/ escape characters " \ "
-
+    var phrase = "I need some \"quotes\" to be here.";
+    console.log("phrase 2:", phrase);
 
     //string w/ escape characters and mixed single/double quotes
-
+    var phrase = "he\'s in PWA1";
+    console.log("phrase 3:", phrase);
 
     //this example shows that all the "phase" vars above were overwritten
-
+    var x = 3;
+    var phrase = "he\'s in PWA1" + x;
+    console.log("phrase 4:", phrase);
 
 
 // numbers (definition, concatenation +, math, numbers & strings)
@@ -89,13 +98,33 @@ console.log('------ numbers ----------');
 
 
     //basic math
-
+    var counter = 10;
+    console.log("basic math:", counter + 1); // gives us 11
 
     //quick operations with "assignment operator" +=, -=, *=, /=, %=
-    //one example below, can show more examples with other assignment operators
-
+    //one example below, can show more examples with other assignment operators  
+    var x = 10; 
+    console.log("counter:", x);
 
     //increment or decrement numbers by 1 with ++ or --
+    --x; // not common
+    console.log("--counter:", x); 
+
+    x--; // can be written both ways
+    console.log("--counter:", x); 
+
+    
+    var x = 10;
+    var y = 5;
+    x += y;
+    console.log("+=", x);
+
+    var myNum = 5;
+    console.log("myNum =", myNum);
+    myNum++;
+    console.log("myNum =", myNum);
+    myNum--;
+    console.log("myNum =", myNum);
 
     //this decrements right before it is being used
 
@@ -115,6 +144,9 @@ console.log('------ numbers ----------');
 
 
     //modulo example
+    var x = 10;
+    var y = 3;
+    console.log("Remainder: ", x%y);
 
 
 // arrays: (definition, indexing, getter/setter)
@@ -154,7 +186,8 @@ console.log('------ arrays ----------');
 
  ********************************************/
 
-
+ var array = [10, 50, 100, 200];
+ console.log("array sum =", array[0] + array[1] + array[2] + array[3]);
 
 /*******************************************
 
@@ -171,6 +204,11 @@ console.log('------ arrays ----------');
 
  ********************************************/
 
+var arrayOne = []; // or you can do var arrayOne = new Array();
+arrayOne[0] = "baseball";
+arrayOne[1] = "football";
+arrayOne[2] = "basketball";
+console.log("arrayOne:", arrayOne[0], arrayOne[1], arrayOne[2]);
 
  // conditionals: (definition, indexing, math, if, if-else, if-else if, ternary)
 console.log('------ conditionals ----------');
@@ -206,7 +244,8 @@ console.log('------ conditionals ----------');
     - conditions can be used just about anywhere, not just in conditionals and loops
 */
 
-
+var myVar = 5 > 3;
+console.log("is 5 greater than 3?", myVar);
 
 /*
      most common comparison operators:
@@ -235,9 +274,21 @@ console.log('------ conditionals ----------');
     ================================================================
 */
 
-    // == performs a loose check of two values
+    // == performs a loose check of two values (basically if digits/letters are the same)
+    if("1" == 1){
+        console.log("true");
+    }
+    if(1 == 1){
+        console.log("true");
+    }
 
-
+    // === checks for matching datatype and values
+    if("1" === 1){
+        console.log("true");
+    }
+    else{
+        console.log("false");
+    }
 
 /* ==============================================================
     if - else statements (allows only for one option)
@@ -251,7 +302,26 @@ console.log('------ conditionals ----------');
  ================================================================
  */
 
+    if(a < b){
+        console.log("a is less than b");
+    }
+    else{
+        console.log("if-else: the if statement is false");
+    }
 
+
+    if(a < b){
+        console.log("a is less than b");
+    }
+    else if(a < c){
+        console.log("a is less than c");
+    }
+    else if(a < d){
+        console.log("a is less than d");
+    }
+    else{
+        console.log("if-else: all others return false");
+    }
 
     //if - else if - else (allows for multiple options)
 
@@ -259,7 +329,17 @@ console.log('------ conditionals ----------');
 
     //nested conditional statement
 
-
+    if(a === a){
+        if(b === b){
+            console.log("in Nested if-else / b === b: True");
+        }
+        else{
+        console.log("False");
+        }
+    }
+    else{
+        console.log("nested conditional: 1st if renturned false");
+    }
 
 /* ==============================================================
  LOGICAL operators
@@ -288,7 +368,13 @@ console.log('------ conditionals ----------');
 
     // all logical operators with order of operations
 
+    if((1 === 1) && ("hi" === "hi")){
+        console.log("&& logical operator: both sides = true");
+    }
 
+    if((1 === 1) || ("hi" === "no")){
+        console.log("true");
+    }
 
 /*******************************************
  STUDENT ACTIVITY 3:
@@ -302,7 +388,14 @@ console.log('------ conditionals ----------');
     1. learn if - else
  ********************************************/
 
-
+var weather = "Cloudy";
+if(weather === "sunny"){
+    var bobsMood = "happy";
+}
+else{
+    var bobsMood = "sad";
+}
+console.log("bob's mood is:", bobsMood);
 
 
 /*******************************************
@@ -344,6 +437,10 @@ console.log('------ conditionals ----------');
     - : = false (perform the new statement after the :)
  */
 
+    var mood = (weather == "Sunny" ? "happy" : "sad");
+    console.log("mood:", mood);
+    var smile = true;
+    console.log("I am " + (smile === true ? "happy" : "sad") + "!");
 
 
 /*******************************************
@@ -402,8 +499,17 @@ console.log('------Functions ----------');
      - type the below as an example
         functionName();
  *****************************
+*/
 
+    // anonymous function example
+    var myctr = 1;
+    var myCounter = function(){
+        myctr++;
+        console.log("counter = ", myctr);
+    }
 
+    myCounter();
+    myCounter();
 
 
  /*
@@ -441,7 +547,12 @@ console.log('------Functions ----------');
     - items inside our function we call on these variables.. such as:
  */
 
-
+    var value1 = 1;
+    var value2 = 2;
+    var myFn = function(var1, var2){
+        console.log("function number: ", var1 + var2);
+    }
+    myFn(value1, value2);
 
 
 /*******************************************
