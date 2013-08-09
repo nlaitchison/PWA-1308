@@ -1,8 +1,8 @@
 /*
      Name: Nicole Aitchison	
-	 Date: 08/06/13
+	 Date: 08/08/13
      Class & Section:  PWA1-1308
-     Comments: Goal1: The Duel - Part I
+     Comments: Goal2: The Duel - Part 2
  */
 
 // self executing function, starts when script is called...
