@@ -55,7 +55,7 @@
     var avgNumbers = function(arr){
         // variable to keep hold the total of all the numbers
         var total = 0;
-        // for loop that goes throught the array 
+        // for loop that goes through the array 
         for(var i=0, max=arr.length; i<max; i++){
             // adds each number in the array to the total
             total += arr[i];
