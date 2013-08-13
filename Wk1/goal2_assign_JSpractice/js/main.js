@@ -59,7 +59,7 @@
         for(var i=0, max=arr.length; i<max; i++){
             // adds each number in the array to the total
             total += arr[i];
-        }
+        }2
         // calculates the average of all the numbers
         var average = total/arr.length;
         // returns the average

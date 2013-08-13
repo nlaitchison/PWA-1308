@@ -3,7 +3,7 @@
 	JavaScript Debugging & Scope
 */
 
-
+// Self executing function, everything we do is inside of it 
 (function(){
 
 /*
@@ -31,6 +31,12 @@ console.log('------ Recap from the previous lecture ----------');
 // Array - For Loop
     var students1 = ['Bob','Christine','Sally','Jim'];
 
+    console.log("length:", students1.length);
+
+    for(var i = 0, max = students1.length; i < max; i++){
+    	console.log("index:", i);
+    	console.log("student:", students1[i]);
+    }
 
 
 
@@ -81,18 +87,21 @@ console.log('------ Debugging ----------');
      display.  You may want to see the error messages in Chrome and Firefox.
  ***********************/
 
- /*
+
 	//Example1
-	var name = james, course = 'PWA1, month = 3;
-	console.log ("name: ", name + " / course: ", coures + " / month: ", month)
+	var name = "james", course = 'PWA1', month = 3;
+	console.log ("name: ", name + " / course: ", course + " / month: ", month);
 
 
     //Example2:
-	var phrase = 'he's in ' + ' "PWA1' ";
-	console.log("phase 4: ", phr@se);
+	var phrase = "he's in " + " 'PWA1' ";
+	console.log("phase 4: ", phrase);
 
 
     //Example3:
+    var a = "";
+    var b = "";
+    var c = "";
 	if (a === a){    //1st IF statement
 		//execute this block of code if a is equal to a
 		
@@ -103,9 +112,9 @@ console.log('------ Debugging ----------');
 			//execute block of code if the matching “IF” statement returns false
 		};
 
-	}else
+	}else{
 		//execute this block of code if the 1st “IF” statement returns false
-		console.log("nested conditional: 1st IF returned false);
+		console.log("nested conditional: 1st IF returned false");
 	};
 
 
@@ -113,7 +122,7 @@ console.log('------ Debugging ----------');
 	var value1 = 'Sunny';
 	var value2 = 10;
 	
-	var mood = function(weather, waves)
+	var mood = function(weather, waves){
 
 		if (weather = "Sunny"){
 			if (waves === 10){
@@ -125,19 +134,19 @@ console.log('------ Debugging ----------');
 			};	
 	
 		}else if (weather === 'Overcast'){
-			if ((wave <= 10) !! (waves >= 7)){
+			if ((wave <= 10) || (waves >= 7)){
 				Mood = "JACKED UP";
 			}else if ((waves <= 6) && (waves >= 3)){
 				Mood = 'totally bummed';			
-			)else{
+			}else{
 				Mood = 'not happy';
 			};
 
 		}else{
-			Mood = 'sad'
+			Mood = 'sad';
 		};
 
-		return Moood;
+		return Mood;
 	};
 
 	var moodType = mood(value1, value2);
@@ -149,20 +158,21 @@ console.log('------ Debugging ----------');
     var myNums = [1, 2, 3, 4, 5];
     console.log(myNums);
 
-    for (var i=10, j=myNums.length; i < j; i++){
+    for (var i=0, j=myNums.length; i < j; i++){
 
         console.log("i: " + i);
         console.log("j: " + j);
 
         if (i === 3) {
             console.log("testing out the break and it broke");
-        };
-
-        continue;
-        console.log('What is at index ' + i + ' = ', myNums[i] );
+        }
+        else{
+        	console.log('What is at index ' + i + ' = ', myNums[i] );
+        }
+        
     };
 
-*****************/
+
 
 /*
 	===============================================
@@ -188,6 +198,13 @@ console.log('------ Debugging ----------');
 */
     console.log('------ Try Catch ----------');
 
+    // try{
+    // 	alert(undefinedVariable);
+    // }
+    // catch(err){
+    // 	// runs if error is found
+    // 	console.log('An Error has Occured');
+    // }
 
 /*
 	===================================================================
@@ -254,9 +271,25 @@ console.log('------ Debugging ----------');
 */
 console.log("---------- Scope & Context ----------------");
 
+	var myctr = 0;
 
+	var myCounter1 = function(newct){
+		var myctr = newct + 10;
+		console.log('function:', myctr);
+	}
+	myCounter1(5);
+	console.log('after function:', myctr);
 
+	var name = "james";
+	console.log('name =', name); // name = james
 
+	function functionName(name){
+		name = "bond";
+		console.log('name = ', name); // name = bond
+	}
+
+	functionName(name); // pass james into the function
+	console.log("name = ", name); // name = james
 
 /*
 	===================================================================
@@ -272,6 +305,9 @@ console.log("---------- Scope & Context ----------------");
 
     /*
     Definition:  Closure:
+    	closure is a self invoking function that returns another function 
+    	and reatains a private variable state
+
           1.  a snapshot of the functions outer environment at the time the closure is
               created
           2.  a closure is created at the moment when you assign a function
@@ -296,6 +332,39 @@ console.log("---------- Scope & Context ----------------");
           5.  NOTE:  a function doesn't have to return something in order to be
                   called a closure.  Simply accessing variables outside of its
                   immediate lexical scope creates a closure.
+
+                  var counter - 0;
+                  var element = document.getElementById('button');
+				  
+				  element.onclick = function() {
+					//increment outside counter
+					counter++;
+
+					if(counter === 3){
+						// do something every third time
+						alert('Third times a charm!');
+						// reset counter
+						counter = 0;
+					}
+				  }
+
+				  var element = document.getElementById('button');
+				  element.onclick = (function(){
+						// init the count to 0
+						var count = 0;
+
+						return function(e){
+							//count
+							count++;
+
+							if(count === 3){
+								// do somethign every third time
+								alert("third time's the charm!");
+								//reset counter
+								count = 0;
+							}
+						}
+				  })();
     */
 
 })(); // end wrapper
