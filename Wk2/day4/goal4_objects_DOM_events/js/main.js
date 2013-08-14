@@ -29,8 +29,22 @@
 console.log('------Objects ----------');
 
 //{KEY : Value} pairings,
+	
+	// like this
 
+	person = {
+		'name': 'bond',
+		'age': 35,
+		'secretAgent': true
+	};
 
+	// or like this
+
+	person = {
+		name: 'bond',
+		age: 35,
+		secretAgent: true
+	};
 
 /* accessing object properties
      - below are 3 ways you can access the property information in an object
@@ -41,14 +55,25 @@ console.log('------Objects ----------');
      - also keep in mind that since the keys can be strings, you could access the keys using string variables
  */
 
+ 	var personAge = 'age';
+ 	console.log(person.name, person[personAge], person['secretAgent']);
 
 // setter
 
-
+person['age'] = '40';
+person.name = 'JamesBond';
+person.height = 5; // you can add more properties or w/e like this
+console.log(person);
 
 //nested objects
 
+person = {
+	birthday:{month:02, day: 12}, 
+	name: 'bond'
+};
 
+console.log(person['birthday']['month']); // syntax notation
+console.log(person.birthday.month); // dot notation
 
 //---------------------------------------------
 
@@ -56,8 +81,22 @@ console.log('------Objects ----------');
 
 console.log('------Object within an object, Arrays, Function ----------');
 
+	var thatGuy = {
+		name: 'JamesBond',
+		course: 'PWA1',
+		address: {
+			num: 3300,
+			street: 'University',
+			city: 'Orlando',
+			cornerOf:['University', 'Semoran']
+		},
+		showMyAddress: function(){
+			var x = this.address.street + ', ' + this.address.city;
+			return x;
+		}
+	};
 
-
+	console.log(thatGuy.showMyAddress());
 //properties & methods
 /*
 	- objects are useful primarily for properties and methods:
@@ -70,8 +109,12 @@ console.log('------Objects - properties & methods ----------');
 
 //Method 1 "Basic"
 
-
-
+	var fsStudent = {}; // initialize a variable
+	fsStudent.age = 22;	// set the age property value
+	fsStudent.career = "Web Dev"; // set the career property value
+	fsStudent.sayHello = function(){ // create a method called sayHello
+		console.log('hello');
+	};
 
 // above, we first initialize the object, then we created 2 properties 
 //   for the object, and a method called sayHello - notice that the method is 
@@ -80,7 +123,11 @@ console.log('------Objects - properties & methods ----------');
 // we can also access the methods and properties of an object using  [ ] , 
 // 	by using their name as a string - all of the below are valid:
 
-
+	console.log('Method 1');
+	fsStudent.sayHello(); // dot syntax
+	fsStudent['sayHello'](); // index syntax
+	console.log(fsStudent.age);
+	console.log(fsStudent['age']);
 
 
 /* --------------
@@ -124,6 +171,36 @@ console.log('------ STUDENT ACTIVITY - ANSWERS BELOW ----------');
 
 // this is integrating multiple data types - object with an array of objects
 
+	var objectTest = {
+		schoolName: "Full Sail",
+		address: "123 University Ave",
+		studentCount: 16000,
+		students: [ 
+			student1 = {
+				name: 'Kaneisha',
+				GPA: 3.8,
+				classes: ['PAW', 'FFM']
+			},
+			student2 = {
+				name: 'Nicole',
+				GPA: 3.9,
+				classes: ['ADT', 'DCG']
+			},
+			student3 = {
+				name: 'Natalie',
+				GPA: 4.0,
+				classes: ['ADG', 'WSP']
+			},
+		]
+	};
+
+	console.log('dot:', objectTest.schoolName);
+	console.log('index:', objectTest['schoolName']);
+	var newCnt = objectTest.studentCount;
+	console.log(newCnt);
+	console.log(objectTest["address"]);
+	console.log('student 1 GPA, dot:', objectTest.students[0].GPA);
+	console.log('student 2 GPA, index:', objectTest['students'][1]['GPA']);
 
 
 /* ----------------------------------------------------------------------------
@@ -138,7 +215,18 @@ console.log('------ STUDENT ACTIVITY - ANSWERS BELOW ----------');
     2.  console.log the average grade by calling the gradeAvg method.
 ----------------------------------------------------------------------------- */
 
+	var gradeAvg = function(){
+		var sumGPA = 0;
+		var count = 0;
+		for(var i=0, max = objectTest.students.length; i<max; i++){
+			sumGPA += objectTest.students[i].GPA;
+			count++;
+		}
+		avgGPA = sumGPA / count;
 
+		return avgGPA;
+	};
+	console.log("average grade:", gradeAvg());
 
 
 /* ===============================================================
@@ -151,6 +239,16 @@ console.log('------ STUDENT ACTIVITY - ANSWERS BELOW ----------');
 */
     console.log("---------- Object - For In Loop ----------------");
 
+    var students = {
+    	name: 'James Bond',
+    	gender: 'Male',
+    	job: 'student'
+    };
+
+    for(var key in students){
+    	console.log('Key Name:', key);
+    	console.log('Value of the key[', key, ']', students[key]);
+    }
 
 
 /*
@@ -186,7 +284,9 @@ console.log('------ STUDENT ACTIVITY - ANSWERS BELOW ----------');
 */
     console.log('------ Objects - Converting Datatypes ----------');
 
-
+    var myNum = 1;
+    myString = String(myNum);
+    console.log(typeof myString);
 
 /*
 	- because these values act as objects, the data types also have methods and 
@@ -197,12 +297,17 @@ console.log('------ STUDENT ACTIVITY - ANSWERS BELOW ----------');
 
 // #1 - shows string length
 
+	myStr = 'OMG';
+	console.log(myStr.length);
 
 // #2 - shows array length
 	
+	myArr = [6, 10];
+	console.log(myArr.length);
 
 // #3 - shows and array of objects, inside of an object length
 	
+
 
 console.log('------ MORE Object examples - Objects/Functions ----------');
 
@@ -221,6 +326,7 @@ console.log('------ MORE Object examples - Objects/Functions ----------');
 console.log('------------ DOCUMENT OBJECT MODEL -------------------');
 
 //Window DOM object
+
 /*
  console.log(window);
  console.log(window.location);
@@ -252,7 +358,8 @@ console.log('------------ DOCUMENT OBJECT MODEL -------------------');
 
 console.log('------------ getElementById -------------------');
 
-
+	var playbox = document.getElementById('playbox');
+	console.log(playbox);
 
 
 /*
@@ -265,7 +372,9 @@ console.log('------------ getElementById -------------------');
 
 console.log('------------ getElementsByTagName -------------------');
 
-
+	var anchors = document.getElementsByTagName('a');
+	console.log(anchors);
+	console.log(anchors[1]);
 
 
 /*
@@ -281,8 +390,14 @@ console.log('------------ getElementsByTagName -------------------');
 
 console.log('------------ querySelectorAll -------------------');
 
+	var nav = document.querySelectorAll('#nav');
+	console.log(nav);
 
+	var navLinks = document.querySelectorAll('#nav li');
+	console.log(navLinks);
 
+	var cf = document.querySelectorAll('.clearfix');
+	console.log(cf);
 
 /*
 	==================================================================
@@ -295,7 +410,8 @@ console.log('------------ querySelectorAll -------------------');
 */
     console.log('------------ querySelector -------------------');
 
-
+    var nav = document.querySelector('#nav');
+    console.log(nav);
 
 
 
@@ -320,7 +436,11 @@ console.log('------------ querySelectorAll -------------------');
     */
     console.log('------------ TRAVERSAL -------------------');
 
+    var apple = document.querySelectorAll('#nav li a')[2];
+    console.log(apple);
 
+    console.log(apple.parentNode);
+    console.log(apple.parentNode.parentNode.parentNode);
 
 
 /*
@@ -339,7 +459,15 @@ console.log('------------ querySelectorAll -------------------');
         attr = href, src, class
 */
 
+	var navLinks = document.querySelectorAll('#nav li');
 
+	for(var i=0, max = navLinks.length; i<max; i++){
+		var href= navLinks[i].firstChild.getAttribute('href');
+		console.log('Manipulation HREF', href);
+
+		var aClass = navLinks[i].firstChild.getAttribute('class');
+		console.log('Manipulation CLASS: ', aClass);
+	};
 
 /*
 	==================================================================
@@ -357,6 +485,17 @@ console.log('------------ querySelectorAll -------------------');
 
 console.log('------------ Manipulating CSS Classes -------------------');
 
+	//navLinks[2].firstChild.setAttribute('class', 'navitem active');
+	//var changeClass = navLinks[1].firstChild.setAttribute('href', 'http://google.com');
+
+console.log('------------ Manipulating HTML Classes -------------------');
+
+	var navLinks = document.querySelectorAll('#nav a');
+	console.log(navLinks[2]);
+
+	console.log(navLinks[2].innerHTML); // Getter
+
+	navLinks[2].innerHTML = "This Link Rocks!";
 
 /*
 	==================================================================
@@ -369,7 +508,8 @@ console.log('------------ Manipulating CSS Classes -------------------');
 Sample Link: http://www.instructables.com/files/deriv/FJI/WGSW/FPIUQQ3K/FJIWGSWFPIUQQ3K.MEDIUM.jpg
 */
 
-
+	var bigImage = document.querySelector('#contentPreview img');
+	bigImage.setAttribute('src', 'http://www.instructables.com/files/deriv/FJI/WGSW/FPIUQQ3K/FJIWGSWFPIUQQ3K.MEDIUM.jpg');
 
 /*
 	==================================================================
@@ -403,6 +543,16 @@ Sample Link: http://www.instructables.com/files/deriv/FJI/WGSW/FPIUQQ3K/FJIWGSWF
 console.log('------------ DOM Events Ex 1-------------------');
 
 var nav = document.querySelectorAll('#nav li a');
+
+for(i=0, max=nav.length; i<max; i++){
+	console.log(nav[i]);
+
+	nav[i].onclick = function(e){
+		console.log(e);
+
+		e.preventDefault();
+	}
+};
 
 
 /*
