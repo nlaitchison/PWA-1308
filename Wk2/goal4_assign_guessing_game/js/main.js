@@ -47,8 +47,6 @@
 
 	// function to run the game
 	var userGuessed = function(){
-		
-		
 
 		// store the inputed text
 		var userInput = document.getElementById('input').value;

@@ -50,6 +50,11 @@ person = {'name':'bond', 'age':35, 'secretAgent':true};
 // STUDENT - how would you write the above with with the KEY not being a
 //      string?
 
+person = {
+	name:'bond', 
+	age:35, 
+	secretAgent:true
+};
 
 // nested object
 person = {birthday:{month:02, day:12}, name:'bond'};   //setter
@@ -58,6 +63,7 @@ console.log(person['birthday']['month']);   //index syntax - returns ’02’ (g
 
 //STUDENT - how would you console.log the birthday month in dot notation?
 
+console.log(person.birthday.month);
 
 // Object within an object, Arrays, Function
 var thatGuy = {
@@ -78,9 +84,11 @@ var thatGuy = {
 //STUDENT - How would you invoke the "showMyAddress" function using dot
 //      syntax?
 
+console.log(thatGuy.showMyAddress());
 
 //STUDENT - console.log the street address and city using dot notation.
 
+console.log(thatGuy.address.street + ", " + thatGuy.address.city);
 
 // below is an object that contains an array of objects
 var obj1 = {
@@ -97,6 +105,7 @@ var obj1 = {
 
 //STUDENT - how would you get the length of the students array?
 
+console.log("array length:", obj1.students.length);
 
 /*
 	==============================================================
@@ -113,7 +122,8 @@ var obj1 = {
 
 console.log('------------ Document Object Model (DOM) -------------------');
 
-
+console.log(window);
+console.log(document.body);
 	
 /*
 	==============================================================
@@ -130,12 +140,12 @@ console.log('------------ Document Object Model (DOM) -------------------');
 	// Use querySelector or querySelectorAll
 */
 
-
+	console.log(document.querySelector('#nav'));
 
 //STUDENT - using the console.log above, how would you include ALL the 'li'
 //      for the id #nav?
 
-
+	console.log(document.querySelectorAll('#nav li'));
 
 /*
 	==================================================================
@@ -155,7 +165,7 @@ console.log('------------ Document Object Model (DOM) -------------------');
 	Remember 'Line Breaks' ( \n ) are elements.
 */
 
-
+	console.log(document.querySelector('#nav li').lastChild.lastChild);
 
 /*
 	==================================================================
@@ -177,9 +187,11 @@ console.log('------------ Document Object Model (DOM) -------------------');
 
 console.log('------------ DOM - Manipulating Attributes -------------------');
 
+	var chgAttr = document.querySelector('#nav').childNodes[1].firstChild;
 
 //STUDENT - how would I set the attribute? change the href to google.com?
 
+	console.log(document.querySelector('#nav').childNodes[1].firstChild);
 
 /*
 	==================================================================
@@ -192,8 +204,15 @@ console.log('------------ DOM - Manipulating Attributes -------------------');
 
 console.log('------------ DOM - Manipulating HTML w/ .innerHTML -------------------');
 
+	var navLinks = document.querySelectorAll('#nav a');
+	console.log(navLinks[2]);
 
+	//console.log(navLinks[2].innerHTML);
+	//navLinks[2].innerHTML = 'THIS LINK ROCKS!';
 
+	// for (var i = 0, max = navLinks.length; i<max; i++) {
+	// 	navLinks[i].innerHTML = "Click Me " + i;
+	// };
 
 
 /*
@@ -215,9 +234,15 @@ console.log('------------ DOM - Manipulating HTML w/ .innerHTML ----------------
 
 console.log('------------ DOM - Manipulating CSS -------------------');
 
-var navLinks = document.querySelectorAll('#nav a');
+	var navLinks = document.querySelectorAll('#nav a');
 
-
+	for(var i=0, max = navLinks.length; i<max; i++){
+		navLinks[i].style.backgroundColor = '#ff0000';
+		navLinks[i].style.fontSize = "200%";
+		navLinks[i].style.padding = '30px 5px 5px 5px';
+		navLinks[i].style.marginBottom = '20px';
+		navLinks[i].style.border = '3px solid #000000';
+	}
 
 
 /*
@@ -253,6 +278,13 @@ console.log('------------ DOM Events -------------------');
     //select the first anchor link
 	var navLinks = document.querySelector('#nav a');
 
+	var clickFn = function(e){
+		console.log(this.getAttribute('href'));
+		e.preventDefault();
+		return false;
+	};
+
+	navLinks.onclick = clickFn;
 
 
 	// #2 (anonymous)
@@ -347,10 +379,22 @@ STUDENT ACTIVITY
 	split()		string.split.(RegExp): cuts a string into an array, making cuts at matches
 */
 
+	var emailRegEx = /(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})/;
+	var str = "my personal email is es@gmail.com but my work email is es@fullsail.com";
+	console.log(emailRegEx.exec(str));
+
+	console.log(emailRegEx.test(str));
+
+	// the position of the first letter of the matching characters - the email
+	console.log(str.search(emailRegEx));
+
+	var clean = str.replace(emailRegEx, 'XXX@XXX.com');
+	console.log(clean);
 
 
-
-
+	var phoneRegEx = /^[2-9]\d{2}-\d{3}-\d{4}$/;
+	var phone = "405-555-1234";
+	console.log(phoneRegEx.test(phone));
 
 /* 
 	// RegExp metaCharacters
@@ -402,7 +446,7 @@ STUDENT ACTIVITY
 
     console.log('------------ Math Methods -------------------');
 
-
+    console.log(document.getElementById('tagbox').innerHTML=Math.random());
 
 
 /*	==================================================================
@@ -418,7 +462,12 @@ STUDENT ACTIVITY
 
     console.log('------------ Date Methods -------------------');
 
+    console.log(new Date());
+    var d = new Date();
+    console.log(d.getFullYear());
 
+
+    // demonstrate your ability to add a new student object to the array of students, then use the DOM to output the student information using innerHTML
 
 
 })(); // end wrapper
