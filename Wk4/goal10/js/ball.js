@@ -15,6 +15,7 @@ function Ball (radius, color){
 	this.lineWidth = 1;
 };
 
+// basically creates a ball on the canvas
 Ball.prototype.update = function(context){
 
 	context.lineWidth = this.lineWidth;
